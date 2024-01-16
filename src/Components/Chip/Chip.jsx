@@ -74,9 +74,16 @@ function Chip() {
 
     // Function to handle input change and filter search items
     const handleChange = (e) =>{
-        const value = e.target.value.toLowerCase();
-        const filteredByValue = filterItem.filter((item) => item.toLowerCase().includes(value));
-        setFilterItem(filteredByValue)   
+        if(e.target.value.toLowerCase()===""){
+            const updateFilter = predefinedItems.filter(
+                (item) => !data.some((selectedItem) => selectedItem.toLowerCase() === item.toLowerCase())
+            );
+            setFilterItem(updateFilter);
+        }else{
+            const value = e.target.value.toLowerCase();
+            const filteredByValue = filterItem.filter((item) => item.toLowerCase().includes(value));
+            setFilterItem(filteredByValue)   
+        }
     }
 
     // Function to handle click on search items
